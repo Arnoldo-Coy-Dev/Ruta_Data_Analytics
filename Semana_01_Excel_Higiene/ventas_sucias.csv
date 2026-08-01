@@ -1,0 +1,7 @@
+ID_Cliente,Nombre_Cliente,Fecha,Producto,Monto_USD,Estado
+101,  Pedro Perez ,2026-01-15,Laptop,850.00,Completado
+102,Maria Gomez,15/01/2026,TECLADO,45.00,Completado
+101,  Pedro Perez ,2026-01-15,Laptop,850.00,Completado
+103, Carlos  Sosa ,2026/02/01,Mouse,25.0, Pendiente 
+104,Ana Rodriguez,02-02-2026,LAPTOP,850.00,Completado
+105,Luis Hernandez,2026-02-10,Monitor,220.00, Cancelado
