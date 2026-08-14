@@ -38,3 +38,4 @@ Para corregir estos fallos y garantizar la integridad de los datos, se aplicaron
 * `ventas_sucias.csv`: Archivo fuente original sin procesar.
 * `ventas_limpias.xlsx`: Dataset resultante, auditado y listo para consumo analítico.
 * `README.md`: Documentación técnica del proceso.
+

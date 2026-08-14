@@ -1,0 +1,7 @@
+ID_Venta,Fecha,Vendedor,Categoria,Monto,Estatus
+V-101,2026-03-01,  pedro PEREZ ,Tecnologia,150.00,Completado
+V-102,2026-03-02,MARIA gomez,Tecnologia ,200.50,Completado
+V-103,2026-03-03,pedro perez,Repuestos,50.00,Devuelto
+V-104,2026-03-04,  Carlos Sosa, TECNOLOGIA,310.00,Completado
+V-105,2026-03-05,maria GOMEZ,Repuestos,120.00,Completado
+V-106,2026-03-05,Carlos Sosa,Repuestos,0.00,Pendiente
