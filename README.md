@@ -1,41 +1,36 @@
-# Iniciando mi ruta de aprendizaje en Data Analytics e IA
-# Fase 1: SQL y power BI
-# Práctica 01: Higiene y Limpieza de Datos (Data Cleaning)
+# 📊 Ruta de Aprendizaje & Consultoría en Data Analytics
 
-## 📌 Objetivo del Proyecto
-Procesar y sanear un dataset crudo de ventas en formato `.csv` con errores frecuentes de ingreso de datos, transformándolo en una estructura limpia y estandarizada (`.xlsx`) lista para análisis e ingesta en herramientas de BI.
+¡Bienvenido a mi repositorio de Análisis de Datos y Business Intelligence! 
 
----
-
-## 🛠️ Problemas Identificados en la Fuente (`ventas_sucias.csv`)
-
-Durante el diagnóstico inicial de la información cruda se detectaron las siguientes inconsistencias:
-
-* **Espacios sobrantes:** Nombres de clientes con espacios al inicio y al final (ej. `  Pedro Perez `), lo que genera duplicidad de entidades en conteos de clientes únicos.
-* **Inconsistencia de caja (Mayúsculas/Minúsculas):** Categorías de productos registradas de forma heterogénea (`Laptop` vs `LAPTOP`), afectando las agrupaciones por producto.
-* **Discrepancia en formatos de fecha:** Mezcla de formatos ISO (`YYYY-MM-DD`) y regionales (`DD/MM/YYYY`).
-* **Registros duplicados:** Transacciones idénticas repetidas en el archivo de origen que inflaban el volumen real de ventas.
-
----
-
-## 🧼 Proceso de Transformación y Solución
-
-Para corregir estos fallos y garantizar la integridad de los datos, se aplicaron las siguientes técnicas en Excel:
-
-1. **Estandarización de texto:**
-   * Aplicación de la función `=ESPACIOS()` para eliminar caracteres invisibles y espacios extras.
-   * Uso de `=NOMPROPIO()` y `=MAYUSC()` para homogeneizar la nomenclatura de clientes y catálogo de productos.
-2. **Normalización de tipos de datos:**
-   * Conversión del campo `Fecha` a formato estándar de fecha corta (`DD/MM/AAAA`).
-   * Fijación de valores mediante *Pegado Especial -> Valores* para eliminar dependencias de fórmulas.
-3. **Control de duplicados e integridad:**
-   * Ejecución del algoritmo de remoción de duplicados a nivel de fila completa, depurando registros repetidos y asegurando el total real de ingresos.
+En este espacio documento mi proceso de aprendizaje, ejercicios prácticos y proyectos aplicados a la **gestión gastronómica y consultoría de negocios**, utilizando herramientas clave para la toma de decisiones estratégicas.
 
 ---
 
 ## 📁 Estructura del Repositorio
 
-* `ventas_sucias.csv`: Archivo fuente original sin procesar.
-* `ventas_limpias.xlsx`: Dataset resultante, auditado y listo para consumo analítico.
-* `README.md`: Documentación técnica del proceso.
+* **`01_SQL/`**: Scripts de consulta, creación de bases de datos relacionales, uniones (`JOINs`), agregaciones y análisis de márgenes de ganancia.
+* **`02_PowerBI/`**: Dashboards interactivos para visualización de KPIs financieros y operativos.
+* **`03_Proyectos/`**: Casos de estudio de negocio avanzados y análisis extremo a extremo (*End-to-End*).
+* **`Semana_01_Excel_Higiene/`**: Limpieza, estructuración y auditoría de datos en hojas de cálculo.
+
+---
+
+## 🚀 Proyectos y Casos Destacados
+
+### 🍗 Caso 1: Ingeniería de Menú y Análisis de Margen - Asadero "El Titular"
+* **Ubicación:** `01_SQL/02_rentabilidad_el_titular.sql`
+* **Objetivo:** Determinar la rentabilidad por plato, margen bruto ($ y %) y rotación de inventario para optimizar la carta del restaurante.
+* **Herramientas:** SQL (`LEFT JOIN`, `SUM`, `CASE WHEN`, `COALESCE`, `ROUND`).
+* **Resultados Clave:** Identificación de platos estrellas en ganancia bruta vs. platos con baja rotación.
+
+---
+
+## 🛠️ Tecnologías y Herramientas
+* **Lenguajes:** SQL, Python
+* **BI & Visualización:** Power BI, Excel Avanzado
+* **Control de Versiones:** Git & GitHub
+* **Entorno de Trabajo:** VS Code
+
+---
+*Desarrollado por Arnoldo Coy - Consultor de Negocios & Data Analyst en formación.*
 
