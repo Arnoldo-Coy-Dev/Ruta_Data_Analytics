@@ -93,3 +93,13 @@ SELECT
 FROM productos p
 LEFT JOIN movimientos_almacen m ON p.id_producto = m.id_producto
 GROUP BY p.nombre_producto;
+
+git add .
+git commit -m "Agrega ejercicios de HAVING y CASE WHEN"
+git push
+
+git status
+
+git status
+
+
