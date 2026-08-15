@@ -84,3 +84,4 @@ FROM productos p
 LEFT JOIN ventas_detalle v ON p.id_producto = v.id_producto
 GROUP BY p.id_producto, p.nombre_producto
 ORDER BY ganancia_bruta DESC;
+

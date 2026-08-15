@@ -1,3 +1,6 @@
+DROP TABLE IF EXISTS ventas_detalle;
+DROP TABLE IF EXISTS productos;
+
 -- 1. Crear tabla de categorías
 CREATE TABLE IF NOT EXISTS categorias (
     id_categoria INT PRIMARY KEY,
@@ -64,53 +67,11 @@ INSERT INTO ventas_detalle (id_venta, id_producto, cantidad, fecha_venta, hora_v
 (10, 102, 30, '2026-08-16', '13:00:00', 'Zelle');
 
 
-SELECT 
-    p.nombre_producto,
-    SUM(v.cantidad) AS unidades_vendidas,
-    SUM(v.cantidad * p.precio_venta) AS ingreso_total,
-    SUM(v.cantidad * p.costo_estimado) AS costo_total,
-    SUM(v.cantidad * (p.precio_venta - p.costo_estimado)) AS ganancia_bruta
-FROM productos p
-LEFT JOIN ventas_detalle v ON p.id_producto = v.id_producto
-GROUP BY p.id_producto, p.nombre_producto
-ORDER BY ganancia_bruta DESC;
-
 
 SELECT 
     p.nombre_producto,
     COALESCE(SUM(v.cantidad), 0) AS unidades_vendidas,
     COALESCE(SUM(v.cantidad * p.precio_venta), 0) AS ingreso_total,
-    COALESCE(SUM(v.cantidad * p.costo_estimado), 0) AS costo_total,
-    COALESCE(SUM(v.cantidad * (p.precio_venta - p.costo_estimado)), 0) AS ganancia_bruta
-FROM productos p
-LEFT JOIN ventas_detalle v ON p.id_producto = v.id_producto
-GROUP BY p.id_producto, p.nombre_producto
-ORDER BY ganancia_bruta DESC;
-
-
-SELECT 
-    p.nombre_producto,
-    COALESCE(SUM(v.cantidad), 0) AS unidades_vendidas,
-    COALESCE(SUM(v.cantidad * p.precio_venta), 0) AS ingreso_total,
-    COALESCE(SUM(v.cantidad * p.costo_estimado), 0) AS costo_total,
-    COALESCE(SUM(v.cantidad * (p.precio_venta - p.costo_estimado)), 0) AS ganancia_bruta,
-    ROUND(
-        CASE 
-            WHEN SUM(v.cantidad * p.precio_venta) > 0 
-            THEN (SUM(v.cantidad * (p.precio_venta - p.costo_estimado)) / SUM(v.cantidad * p.precio_venta)) * 100.0
-            ELSE 0 
-        END, 2
-    ) AS margen_porcentaje
-FROM productos p
-LEFT JOIN ventas_detalle v ON p.id_producto = v.id_producto
-GROUP BY p.id_producto, p.nombre_producto
-ORDER BY ganancia_bruta DESC;
-
-SELECT 
-    p.nombre_producto,
-    COALESCE(SUM(v.cantidad), 0) AS unidades_vendidas,
-    COALESCE(SUM(v.cantidad * p.precio_venta), 0) AS ingreso_total,
-    COALESCE(SUM(v.cantidad * p.costo_estimado), 0) AS costo_total,
     COALESCE(SUM(v.cantidad * (p.precio_venta - p.costo_estimado)), 0) AS ganancia_bruta,
     ROUND(
         CASE 
@@ -118,10 +79,18 @@ SELECT
             THEN (SUM(v.cantidad * (p.precio_venta - p.costo_estimado)) * 100.0) / SUM(v.cantidad * p.precio_venta)
             ELSE 0 
         END, 2
-    ) AS margen_porcentaje
+    ) AS margen_porcentaje,
+    -- Clasificación de la Matriz de Ingeniería de Menú
+    CASE 
+        WHEN COALESCE(SUM(v.cantidad), 0) >= 15 AND ROUND((SUM(v.cantidad * (p.precio_venta - p.costo_estimado)) * 100.0) / NULLIF(SUM(v.cantidad * p.precio_venta), 0), 2) >= 60 THEN '🌟 Estrella'
+        WHEN COALESCE(SUM(v.cantidad), 0) >= 15 AND ROUND((SUM(v.cantidad * (p.precio_venta - p.costo_estimado)) * 100.0) / NULLIF(SUM(v.cantidad * p.precio_venta), 0), 2) < 60 THEN '🐎 Caballo de Batalla'
+        WHEN COALESCE(SUM(v.cantidad), 0) < 15 AND ROUND((SUM(v.cantidad * (p.precio_venta - p.costo_estimado)) * 100.0) / NULLIF(SUM(v.cantidad * p.precio_venta), 0), 2) >= 60 THEN '🧩 Rompecabezas'
+        ELSE '🐕 Perro'
+    END AS clasificacion_menu
 FROM productos p
 LEFT JOIN ventas_detalle v ON p.id_producto = v.id_producto
 GROUP BY p.id_producto, p.nombre_producto
 ORDER BY ganancia_bruta DESC;
 
+select * from productos;
 
